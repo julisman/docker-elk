@@ -1,0 +1,18 @@
+version: '2'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.14
+    restart: always
+    ports:
+        - "80:80"
+    volumes:
+        - ./conf.d:/etc/nginx/conf.d
+        - ./etc/nginx/htpasswd.users:/etc/nginx/htpasswd.users:rw
+
+    networks:
+      - dockerelk_docker_elk
+
+networks:
+  dockerelk_docker_elk:
+    external: true
